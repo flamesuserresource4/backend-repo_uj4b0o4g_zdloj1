@@ -14,7 +14,7 @@ Model name is converted to lowercase for the collection name:
 from pydantic import BaseModel, Field, EmailStr
 from typing import Optional
 
-# Example schemas (you can keep or remove):
+# Example schemas (replace with your own):
 
 class User(BaseModel):
     """
@@ -38,13 +38,13 @@ class Product(BaseModel):
     category: str = Field(..., description="Product category")
     in_stock: bool = Field(True, description="Whether product is in stock")
 
-# Birthday guestbook wishes schema used by the app
+# Birthday guestbook wishes schema
 class Wish(BaseModel):
     """
     Guestbook wishes collection
     Collection name: "wish"
     """
-    name: str = Field(..., min_length=0, max_length=100, description="Sender name (can be empty for Anonymous)")
+    name: str = Field(..., min_length=1, max_length=100, description="Sender name")
     message: str = Field(..., min_length=1, max_length=1000, description="Heartfelt message")
     relation: Optional[str] = Field(None, max_length=100, description="How the sender knows Krishnali")
     email: Optional[EmailStr] = Field(None, description="Optional contact email")
